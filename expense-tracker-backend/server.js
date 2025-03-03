@@ -17,9 +17,14 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log("✅ MongoDB Connected"))
 .catch(err => console.error("❌ MongoDB connection error:", err));
 
-//add the roads
- const expenseRoutes = require("./routes/expenseRoutes");
- app.use("/expenses", expenseRoutes);
+// Import Routes
+const authRoutes = require("./routes/authRoutes");
+const expenseRoutes = require("./routes/expenseRoutes");
+
+// Use Routes
+app.use("/auth", authRoutes);
+app.use("/expenses", expenseRoutes);
+
 
  app.get("/", (req, res) => {
     res.send("✅ Serveur Express fonctionne !");
